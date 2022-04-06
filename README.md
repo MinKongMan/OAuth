@@ -17,3 +17,14 @@ Their : Resource Server(Facebook등)
 1. Client가 Resource Server의 서비스를 이용하기 위해 사전에 등록을 해야함.
 	보통 Client ID, Client Secret, Authorized redirect URIs를 받음
 				Resource Server가 Authorized code를 전달해줄 때 해당 주소로 전달함
+
+2. Resource Owner가 어플리케이션을 이용할 때 Resource Server를 사용할 때가 있다.(ex 페북에 글을 게시)
+	그럴 때 Client가 Resource Owner에게 facebook으로 로그인하기 등 버튼이 있는 화면을 띄움
+	버튼에는 링크가 있는데, https://~/?clientid=~&scope=B,C&redirect_uri=~ 이런 형식의 링크를 담고 있음.
+	클라이언트 ID, 사용하고자하는 기능, redirect주소 3가지
+	위 주소로 Resource Owner가 Resource Server로 접속을 하게 되면 Server가 Owner가 로그인 되어있는지 아닌지 판단
+	만약 안 되어 있으면 로그인 하라는 창 줌
+	로그인 성공 시 clientid와 같은 값이 있는지 Resource Server가 판단
+	그리고 같은 아이디면 redirect_uri 값을 비교해서 다르면 작업 중단 
+	같다면 Resource Owner에게 Scope에 해당되는 권한을 Client에게 부여할 것인지를 확인하는 메세지를 보냄
+	허용한다면 Resource Server는 user id:1(Owner는 user id 1이라 가정)은 Scope B,C를 사용하는데 동의하였다라는 내용을 저장
