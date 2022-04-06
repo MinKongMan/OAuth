@@ -35,16 +35,23 @@ Their : Resource Server(Facebook등)
 3. Resource Server의 승인
 	Authorization code를 Resource Server가 Resource Owner에게 전송
 	Location : https://client/callback?code=3 형태로 전송
+	
 	Location이란? 응답할 때 header값으로 Location을 줌 = redirection
+	
 	웹 브라우저에게 위의 주소로 이동하라고 명령함(Resource Server가 Resource Owner의 웹브라우저에게)
 	웹 브라우저는 은밀하게 이 주소로 이동
+	
 	그럼 code=3에 의해 client는 authorization code = 3을 알게 됨
+	
 	그 후 Client는 Client Secret과 authorization code값을 조합하여 Resource Server에 전송
+	
 	Resource Server는 Authorization code값과 Client id, Client Secret, redirect uri 모두 확인한 후 모두 일치하면 다음 단계 진행
-
+	
 4. 액세스 토큰 발급
 	Resource Server는 Authorization code값을 통해서 인증을 했기 때문에 코드값 지움
+	
 	액세스 토큰 생성 후 Client에게 액세스 토큰 값 응답 -> 클라이언트는 액세스 토큰 값 저장
+	
 	Resource Server는 액세스 토큰에 대응되는 user id와 허용된 기능을 찾은 후 같은 액세스 토큰을 가진 사용자에게 권한을 허용
 	
 	즉 Client가 액세스토큰 4를 들고 Resource Server로 접근하면 해당 토큰에 있는 user id에게 기능을 제공할 수 있는 권한을 줘라는 뜻
